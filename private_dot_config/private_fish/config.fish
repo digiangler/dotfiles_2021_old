@@ -1,0 +1,116 @@
+#####################
+# fish Shell 環境構築
+#####################
+
+# Digi-Angler
+# Update:2021/04/24
+
+#####################
+# 設定
+#####################
+
+# Neofetch を表示する
+neofetch
+
+# 起動時のメッセージを非表示にする
+function fish_greeting
+  echo "Let's build something epic 🚀"
+  echo The time is (set_color FF26AB; date +%T; set_color 00FF9C) and this machine is called $hostname
+end
+
+# set -U fish_greeting ""
+
+set -gx TERM xterm-256color
+
+# viモードを有効にする
+set -U fish_key_bindings fish_vi_key_bindings
+
+# プロンプトでフルパスを取得する
+set -U fish_prompt_pwd_dir_length 0
+
+# theme
+set -g theme_display_user yes
+set -g theme_hide_hostname no
+set -g theme_hostname always
+
+# aliases
+alias ls "ls -p -G"
+alias la "ls -A"
+alias ll "ls -l"
+alias lla "ll -A"
+alias g git
+
+# nvim
+# command -qv nvim && alias vim nvim
+# set -gx EDITOR nvim
+
+switch (uname)
+  case Darwin
+    source (dirname (status --current-filename))/config-osx.fish
+  case Linux
+    # Do nothing
+  case '*'
+    source (dirname (status --current-filename))/config-windows.fish
+end
+
+set LOCAL_CONFIG (dirname (status --current-filename))/config-local.fish
+if test -f $LOCAL_CONFIG
+  source $LOCAL_CONFIG
+end
+
+# set theme via `starship`
+set starship init fish | source
+
+
+
+#####################
+# テーマ
+#####################
+
+# Budspencer theme
+if test (uname -s) = "Darwin"
+  set -gx PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
+  set -gx PATH /usr/local/opt/gnu-sed/libexec/gnubin $PATH
+end
+
+# 起動時の挨拶を無効にする
+# set -U budspencer_nogreeting
+
+# プロンプトの色を変更する
+set budspencer_colors 00d7be 5e35b1 7b17eb e6e6e6 37195a e8c317 e6460a ff3270 ffff00 ff26ab d6f02f 00ff9c
+
+# コマンド履歴に表示されるべきではないコマンド
+set -U budspencer_nocmdhist c d ll ls m s
+
+# Node バーetョンを表示する
+# set -g budspencer_alt_environment "node -v"
+
+
+
+#####################
+# Develop 設定
+#####################
+
+# anyenv 設定
+set -x PATH $HOME/.anyenv/bin $PATH
+eval (anyenv init - | source)
+
+
+
+#####################
+# imports
+#####################
+
+switch (uname)
+  case Darwin
+    source (dirname (status --current-filename))/config-osx.fish
+  case Linux
+    # Do nothing
+  case '*'
+    source (dirname (status --current-filename))/config-windows.fish
+end
+
+set LOCAL_CONFIG (dirname (status --current-filename))/config-local.fish
+if test -f $LOCAL_CONFIG
+  source $LOCAL_CONFIG
+end

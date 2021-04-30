@@ -1,0 +1,278 @@
+""""""""""""""""
+" vim 環境構築
+""""""""""""""""
+
+" Digi-Angler
+" Update:2021/04/28
+
+""""""""""""""""
+" 設定
+""""""""""""""""
+
+" init autocmd
+autocmd!
+" set script encoding
+scriptencoding utf-8
+" stop loading config if it's on tiny or small
+if !1 | finish | endif
+"
+set shell=fish
+"
+set backupskip=/tmp/*,/private/tmp/*
+
+
+"文字コードをUFT-8に設定
+set fenc=utf-8
+" バックアップファイルを作らない
+set nobackup
+" スワップファイルを作らない
+set noswapfile
+" 編集中のファイルが変更されたら自動で読み直す
+set autoread
+" バッファが編集中でもその他のファイルを開けるように
+set hidden
+" 入力中のコマンドをステータスに表示する
+set showcmd
+
+
+"" 見た目系
+
+" 行番号を表示
+set number
+" 現在の行を強調表示
+set cursorline
+" 現在の行を強調表示（縦）
+set cursorcolumn
+" 行末の1文字先までカーソルを移動できるように
+set virtualedit=onemore
+" インデントはスマートインデント
+set smartindent
+" ビープ音を可視化
+set visualbell
+" 括弧入力時の対応する括弧を表示
+set showmatch
+"
+set cmdheight=1
+" ステータスラインを常に表示
+set laststatus=2
+"
+set scrolloff=10
+" コマンドラインの補完
+set wildmode=list:longest
+" 折り返し時に表示行単位での移動できるようにする
+nnoremap j gj
+nnoremap k gk
+" シンタックスハイライトの有効化
+syntax enable
+"
+set encoding=utf-8
+set fileencodings=iso-2022-jp,utf-8,sjis,euc-jp,latin
+set fileformats=unix,dos,mac
+"
+set title
+"
+set autoindent
+"
+set background=dark
+
+
+
+"" オペレーション系
+
+" 行をまたいで移動
+set whichwrap=b,s,h,l,<,>,[,],~
+" マウスカーソルの反応
+set mouse=a
+" コマンドラインの履歴を10000件保存する
+set history=10000
+
+
+"" Tab系
+
+" 不可視文字を可視化(タブが「▸-」と表示される)
+set list listchars=tab:\▸\-
+" Tab文字を半角スペースにする
+set expandtab
+" 行頭以外のTab文字の表示幅（スペースいくつ分）
+set tabstop=2
+" 行頭でのTab文字の表示幅
+set shiftwidth=2
+
+
+"" 検索系
+
+" 検索文字列が小文字の場合は大文字小文字を区別なく検索する
+set ignorecase
+" 検索文字列に大文字が含まれている場合は区別して検索する
+set smartcase
+" 検索文字列入力時に順次対象文字列にヒットさせる
+set incsearch
+" 検索時に最後まで行ったら最初に戻る
+set wrapscan
+" 検索語をハイライト表示
+set hlsearch
+" ESC連打でハイライト解除
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
+
+
+
+
+
+
+
+
+
+
+""""""""""""""""
+" プラグイン管理
+""""""""""""""""
+
+"" dein.vim
+
+" -- Start --
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+" Required:
+set runtimepath+=/Users/digi-angler/.cache/dein/repos/github.com/Shougo/dein.vim
+
+" Required:
+if dein#load_state('/Users/digi-angler/.cache/dein')
+  call dein#begin('/Users/digi-angler/.cache/dein')
+
+  " Let dein manage dein
+  " Required:
+  call dein#add('/Users/digi-angler/.cache/dein/repos/github.com/Shougo/dein.vim')
+
+  " Add or remove your plugins here like this:
+  call dein#add('dracula/vim')
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('Shougo/deol.nvim', { 'rev': '01203d4c9' })
+  call dein#add('mattn/emmet-vim')
+  call dein#add('thinca/vim-quickrun')
+  call dein#add('preservim/nerdtree')
+  call dein#add('itchyny/lightline.vim')
+
+  " Required:
+  call dein#end()
+  call dein#save_state()
+endif
+
+" Required:
+filetype plugin indent on
+syntax enable
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
+" -- End --
+
+
+
+""""""""""""""""
+" プラグイン設定
+""""""""""""""""
+
+"" emmet.vim
+
+" --Start --
+let g:user_emmet_settings = {
+\ 'variables' : {
+\  'lang' : "ja"
+\ }
+\}
+" -- End --
+
+
+"" nerdtree
+
+" -- Start --
+nnoremap <silent> <Leader>e :<C-u>NERDTreeToggle<CR>
+
+" 表示幅
+let g:NERDTreeWinSize=50
+
+" ブックマークを表示
+let g:NERDTreeShowBookmarks=1
+
+" 親ディレクトリへ移動
+let g:NERDTreeMapUpdir='<C-u>'
+
+" ファイルの開き方
+let g:NERDTreeMapOpenSplit='<C-j>'
+let g:NERDTreeMapOpenVSplit='<C-l>'
+
+" ファイルを開いたらNERDTreeを閉じる
+let g:NERDTreeQuitOnOpen=1
+
+" 隠しファイルを表示
+let g:NERDTreeShowHidden=1
+
+" 非表示ファイル
+let g:NERDTreeIgnore=['\.git$', '\.clean$', '\.swp$', '\.bak$', '\~$']
+
+augroup vimrc_nerdtree
+  autocmd!
+  " 他のバッファをすべて閉じた時にNERDTreeが開いていたらNERDTreeも一緒に閉じる
+  autocmd bufenter * if (winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree()) | q | endif
+
+  " Tree内では5ずつ移動する
+  autocmd FileType nerdtree nnoremap 5j
+  autocmd FileType nerdtree nnoremap 5k
+augroup END
+" --End --
+
+
+"" lightline.vim
+
+" -- Start --
+let g:lightline = {
+  \ 'colorscheme': 'darcula',
+  \ 'active': {
+  \ 'left': [ [ 'mode', 'paste' ],
+  \ [ 'fugitive', 'readonly', 'filename', 'modified' ],
+  \ [ 'ale' ] ]
+  \ },
+  \ 'component': {
+  \ 'readonly': '%{&filetype=="help"?"":&readonly?"ro":""}',
+  \ 'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+  \ 'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+  \ },
+  \ 'component_visible_condition': {
+  \ 'readonly': '(&filetype!="help"&& &readonly)',
+  \ 'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+  \ 'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+  \ },
+  \ 'component_function': {
+  \ 'ale': 'LinterStatus'
+  \ }
+  \ }
+" -- End --
+
+
+"" fzf.vim
+
+" -- Start --
+set rtp+=/usr/local/opt/fzf
+  let g:fzf_buffers_jump = 1
+  nnoremap <silent> <Leader>ff :<C-u>Ag<CR>
+  nnoremap <silent> <Leader>fh :<C-u>History<CR>
+  nnoremap <silent> <Leader>ft :<C-u>call fzf#vim#tags(expand('<cword>'))<CR>
+  nnoremap <silent> <Leader>fb :<C-u>Buffers<CR>
+  nnoremap <silent> <Leader>fgs :<C-u>GFiles?<CR>
+  nnoremap <silent> <Leader>fgf :<C-u>GFiles<CR>
+  nnoremap <silent> <Leader>fm :<C-u>Marks<CR>
+  let g:fzf_layout = { 'down': '30%' }
+  let g:fzf_action = {
+    \ 'ctrl-t': 'tab split',
+    \ 'ctrl-j': 'split',
+    \ 'ctrl-l': 'vsplit' }
+
+  augroup vimrc_fzf
+      autocmd!
+      autocmd FileType fzf tnoremap <buffer> <leader>z <Esc>
+  augroup END
+" -- End --
