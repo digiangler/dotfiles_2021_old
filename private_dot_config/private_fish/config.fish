@@ -38,7 +38,47 @@ alias ls "ls -p -G"
 alias la "ls -A"
 alias ll "ls -l"
 alias lla "ll -A"
-alias g git
+alias l "ls -CF"
+alias p "pwd"
+
+alias ..1 "cd .."
+alias ..2 "cd ../.."
+alias ..3 "cd ../../.."
+alias ..4 "cd ../../../.."
+alias ..5 "cd ../../../../.."
+
+alias exaf "exa --long --all --group-directories-first --bytes --header --group --git"
+alias exat "exa --long --all --group-directories-first --bytes --header --group --git --tree --ignore-glob .git"
+
+alias fl "fisher list"
+
+alias g "git"
+alias ghg "ghq get"
+alias ghl "ghq list"
+
+alias bl "brew list"
+
+alias n "npm"
+alias y "yarn"
+
+alias d "docker"
+alias dc "docker-compose"
+
+alias v "vim"
+alias nv "nvim"
+alias t "tmux"
+alias e "emacs"
+alias emacs "nvim"
+
+alias vz "v ~/.zshrc"
+alias nvz "nv ~/.zshrc"
+alias vv "v ~/.vimrc"
+alias nvv "nv ~/.vimrc"
+alias vf "v ~/.config/fish/config.fish"
+alias nvf "nv ~/.config/fish/config.fish"
+
+alias q "quit"
+alias x "exit"
 
 # nvim
 # command -qv nvim && alias vim nvim

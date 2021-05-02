@@ -27,8 +27,15 @@ set fenc=utf-8
 set nobackup
 " スワップファイルを作らない
 set noswapfile
+" ファイルの上書きの前にバックアップを作る
+set nowritebackup
+" 改行時に前の行のインデントを継続する
+set autoindent
 " 編集中のファイルが変更されたら自動で読み直す
 set autoread
+" クリップボードにコピーする
+set clipboard&
+set clipboard=unnamedplus
 " バッファが編集中でもその他のファイルを開けるように
 set hidden
 " 入力中のコマンドをステータスに表示する
@@ -62,19 +69,19 @@ set wildmode=list:longest
 " 折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
 nnoremap k gk
+nnoremap <Space>w :w!<CR>
 " シンタックスハイライトの有効化
 syntax enable
 "
 set encoding=utf-8
 set fileencodings=iso-2022-jp,utf-8,sjis,euc-jp,latin
 set fileformats=unix,dos,mac
-"
+" タイトルを表示
 set title
 "
 set autoindent
 "
 set background=dark
-
 
 
 "" オペレーション系
@@ -97,6 +104,16 @@ set expandtab
 set tabstop=2
 " 行頭でのTab文字の表示幅
 set shiftwidth=2
+" 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
+set softtabstop=2
+" 
+nmap <C-t>n :tabnew<CR>
+nmap <C-t>N :tabNext<CR>
+nmap <C-t>p :tabprevious<CR>
+
+inoremap <silent> jj <ESC>
+inoremap <silent> jjw <ESC>:w!<CR>
+inoremap <silent> jjq <ESC>:wq!<CR>
 
 
 "" 検索系
@@ -115,11 +132,18 @@ set hlsearch
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
 
+" Clear highlight
+map <C-n> :noh<CR>
 
+" Split window
+nmap <C-w>s :split<CR>
+nmap <C-w>v :vsplit<CR>
 
-
-
-
+" Move window
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
+nmap <C-h> <C-w>h
 
 
 
@@ -154,6 +178,11 @@ if dein#load_state('/Users/digi-angler/.cache/dein')
   call dein#add('thinca/vim-quickrun')
   call dein#add('preservim/nerdtree')
   call dein#add('itchyny/lightline.vim')
+  call dein#add('vim-airline/vim-airline')
+  call dein#add('ap/vim-css-color')
+  call dein#add('wadackel/vim-dogrun')
+  call dein#add('whatyouhide/vim-gotham')
+  call dein#add('neoclide/coc.nvim')
 
   " Required:
   call dein#end()
@@ -175,6 +204,19 @@ endif
 """"""""""""""""
 " プラグイン設定
 """"""""""""""""
+
+"" colorscheme
+
+"colorscheme dogrun
+colorscheme gotham256
+let g:gotham_airline_emphasised_insert = 0
+
+
+"" vim-clap theme
+
+"let g:clap_theme = 'dogrun'
+let g:clap_theme = 'gotham256'
+
 
 "" emmet.vim
 
@@ -214,6 +256,10 @@ let g:NERDTreeShowHidden=1
 " 非表示ファイル
 let g:NERDTreeIgnore=['\.git$', '\.clean$', '\.swp$', '\.bak$', '\~$']
 
+" Vim PostgreSQL syntax plugin
+let g:sql_type_default = 'pgsql'
+
+
 augroup vimrc_nerdtree
   autocmd!
   " 他のバッファをすべて閉じた時にNERDTreeが開いていたらNERDTreeも一緒に閉じる
@@ -230,7 +276,7 @@ augroup END
 
 " -- Start --
 let g:lightline = {
-  \ 'colorscheme': 'darcula',
+  \ 'colorscheme': 'gotham256',
   \ 'active': {
   \ 'left': [ [ 'mode', 'paste' ],
   \ [ 'fugitive', 'readonly', 'filename', 'modified' ],
@@ -251,6 +297,26 @@ let g:lightline = {
   \ }
   \ }
 " -- End --
+
+
+"" air-line
+
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+
+"" airline symbols
+
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
 
 
 "" fzf.vim
@@ -276,3 +342,4 @@ set rtp+=/usr/local/opt/fzf
       autocmd FileType fzf tnoremap <buffer> <leader>z <Esc>
   augroup END
 " -- End --
+
