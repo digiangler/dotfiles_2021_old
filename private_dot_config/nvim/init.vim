@@ -68,6 +68,14 @@ inoremap <silent> kk <ESC>
 inoremap <silent> <C-k> k
 " ノーマルモード移行と保存
 inoremap <silent> jj <ESC>:<C-u>w<CR>
+" NERDTree
+nnoremap <C-f> :NERDTreeFocus<CR>
+nnoremap <C-t> :NERDTree<CR>
+nnoremap <C-r> :NERDTreeToggle<CR>
+" Coc
+nnoremap <C-g> :call CocActionAsync('jumpDefinition')<CR>
+" Tagbar
+nmap <F8> :TagbarToggle<CR>
 
 
 "" オペレーション系
@@ -128,12 +136,21 @@ if dein#load_state('~/.cache/dein')
   call dein#load_toml('~/.config/nvim/dein.toml', {'lazy': 0})
   call dein#load_toml('~/.config/nvim/dein_lazy.toml', {'lazy': 1})
 
+  call dein#add('tpope/vim-surround')
   call dein#add('preservim/nerdtree')
+  call dein#add('tpope/vim-commentary')
+  call dein#add('itchyny/lightline.vim')
   call dein#add('vim-airline/vim-airline')
+  call dein#add('lifepillar/pgsql.vim')
   call dein#add('ap/vim-css-color')
+  call dein#add('rafi/awesome-vim-colorschemes')
   call dein#add('wadackel/vim-dogrun')
   call dein#add('whatyouhide/vim-gotham')
   call dein#add('neoclide/coc.nvim')
+  call dein#add('ryanoasis/vim-devicons')
+  call dein#add('tc50cal/vim-terminal')
+  call dein#add('preservim/tagbar')
+  call dein#add('terryma/vim-multiple-cursors')
 
   call dein#end()
   call dein#save_state()
@@ -151,23 +168,32 @@ syntax enable
 """"""""""""""""
 
 " colorscheme
-colorscheme dogrun
-"colorscheme gotham
+"colorscheme dogrun
+colorscheme gotham256
 
 
 " lightline theme
 let g:lightline = {
-  \ 'colorscheme': 'dogrun',
+  \ 'colorscheme': 'gotham256',
   \ }
 
 
 " vim-clap theme
-let g:clap_theme = 'dogrun'
+let g:clap_theme = 'gotham256'
 
 
 " NerdTree
 let g:NERDTreeDirArrowExpandable="+"
 let g:NERDTreeDirArrowCollapsible="~"
+
+
+" --- Just Some Notes ---
+" :PlugClean :PlugInstall :UpdateRemotePlugins
+"
+" :CocInstall coc-python
+" :CocInstall coc-clangd
+" :CocInstall coc-snippets
+" :CocCommand snippets.edit... FOR EACH FILE TYPE
 
 
 " air-line
@@ -186,6 +212,8 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
+
+inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
 
 
 " Vim PostgreSQL syntax plugin
