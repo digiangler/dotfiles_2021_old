@@ -46,6 +46,9 @@ set showmatch
 set laststatus=2
 " コマンドラインの補完
 set wildmode=list:longest
+" 
+set background=dark
+set termguicolors
 " ウィンドウ移動
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -169,17 +172,18 @@ syntax enable
 
 " colorscheme
 "colorscheme dogrun
-colorscheme gotham256
+"colorscheme gotham256
+colorscheme cyberpunk-neon
 
 
 " lightline theme
 let g:lightline = {
-  \ 'colorscheme': 'gotham256',
+  \ 'colorscheme': 'cyberpunk-neon',
   \ }
 
 
 " vim-clap theme
-let g:clap_theme = 'gotham256'
+let g:clap_theme = 'cyberpunk-neon'
 
 
 " NerdTree

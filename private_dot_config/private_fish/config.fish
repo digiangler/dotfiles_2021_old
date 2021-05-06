@@ -15,7 +15,7 @@ neofetch
 # 起動時のメッセージを非表示にする
 function fish_greeting
   echo "Let's build something epic 🚀"
-  echo The time is (set_color FF26AB; date +%T; set_color 00FF9C) and this machine is called $hostname
+  echo The time is (set_color FF26AB; date +%T; set_color 721BF2) and this machine is called $hostname
 end
 
 # set -U fish_greeting ""

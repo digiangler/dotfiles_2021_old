@@ -83,6 +83,8 @@ set autoindent
 "
 set background=dark
 
+set termguicolors
+
 
 "" オペレーション系
 
@@ -153,7 +155,6 @@ nmap <C-h> <C-w>h
 
 "" dein.vim
 
-" -- Start --
 if &compatible
   set nocompatible               " Be iMproved
 endif
@@ -191,6 +192,22 @@ if dein#load_state('/Users/digi-angler/.cache/dein')
   call dein#add('tc50cal/vim-terminal')
   call dein#add('preservim/tagbar')
   call dein#add('terryma/vim-multiple-cursors')
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('evanleck/vim-svelte')
+  call dein#add('pangloss/vim-javascript')
+  call dein#add('HerringtonDarkholme/yats.vim')
+  call dein#add('cespare/vim-toml')
+  call dein#add('posva/vim-vue')
+  call dein#add('wavded/vim-stylus')
+  call dein#add('vim-airline/vim-airline-themes')
+  call dein#add('Shougo/defx.nvim')
+  call dein#add('Shougo/denite.nvim')
+  call dein#add('Shougo/deoplete.nvim')
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+  endif
+  call dein#add('kristijanhusak/defx-git')
 
   " Required:
   call dein#end()
@@ -205,7 +222,6 @@ syntax enable
 if dein#check_install()
   call dein#install()
 endif
-" -- End --
 
 
 
@@ -216,30 +232,29 @@ endif
 "" colorscheme
 
 "colorscheme dogrun
-colorscheme gotham256
+"colorscheme gotham256
+colorscheme cyberpunk-neon
 let g:gotham_airline_emphasised_insert = 0
 
 
 "" vim-clap theme
 
 "let g:clap_theme = 'dogrun'
-let g:clap_theme = 'gotham256'
+"let g:clap_theme = 'gotham256'
+let g:clap_theme = "cyberpunk-neon"
 
 
 "" emmet.vim
 
-" --Start --
 let g:user_emmet_settings = {
 \ 'variables' : {
 \  'lang' : "ja"
 \ }
 \}
-" -- End --
 
 
 "" nerdtree
 
-" -- Start --
 nnoremap <silent> <Leader>e :<C-u>NERDTreeToggle<CR>
 
 " 表示幅
@@ -277,14 +292,12 @@ augroup vimrc_nerdtree
   autocmd FileType nerdtree nnoremap 5j
   autocmd FileType nerdtree nnoremap 5k
 augroup END
-" --End --
 
 
 "" lightline.vim
 
-" -- Start --
 let g:lightline = {
-  \ 'colorscheme': 'gotham256',
+  \ 'colorscheme': 'cyberpunk-neon',
   \ 'active': {
   \ 'left': [ [ 'mode', 'paste' ],
   \ [ 'fugitive', 'readonly', 'filename', 'modified' ],
@@ -304,7 +317,6 @@ let g:lightline = {
   \ 'ale': 'LinterStatus'
   \ }
   \ }
-" -- End --
 
 
 "" air-line
@@ -329,7 +341,6 @@ let g:airline_symbols.linenr = ''
 
 "" fzf.vim
 
-" -- Start --
 set rtp+=/usr/local/opt/fzf
   let g:fzf_buffers_jump = 1
   nnoremap <silent> <Leader>ff :<C-u>Ag<CR>
@@ -349,5 +360,8 @@ set rtp+=/usr/local/opt/fzf
       autocmd!
       autocmd FileType fzf tnoremap <buffer> <leader>z <Esc>
   augroup END
-" -- End --
 
+
+"" deoplete.nvim（neovim 専用）
+
+"let g:deoplete#enable_at_startup = 1
