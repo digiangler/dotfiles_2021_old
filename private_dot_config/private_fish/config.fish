@@ -50,13 +50,13 @@ alias ..5 "cd ../../../../.."
 alias exaf "exa --long --all --group-directories-first --bytes --header --group --git"
 alias exat "exa --long --all --group-directories-first --bytes --header --group --git --tree --ignore-glob .git"
 
-alias fl "fisher list"
-
 alias g "git"
 alias ghg "ghq get"
 alias ghl "ghq list"
 
 alias bl "brew list"
+alias fl "fisher list"
+alias al "asdf list"
 
 alias n "npm"
 alias y "yarn"
@@ -158,8 +158,34 @@ set -U budspencer_nocmdhist c d ll ls m s
 #####################
 
 # anyenv 設定
-set -x PATH $HOME/.anyenv/bin $PATH
-eval (anyenv init - | source)
+#set -x PATH $HOME/.anyenv/bin $PATH
+#eval (anyenv init - | source)
+
+# asdf-vm 設定
+source /usr/local/opt/asdf/asdf.fish
+
+# python
+
+
+# go
+
+
+# java
+
+
+# mysql
+
+
+# postgresql
+
+
+# hub
+eval (hub alias -s)
+
+# thefuck
+#eval (thefuck --alias)
+#eval (thefuck --alias FUCK)
+#eval (thefuck --alias --enable-experimental-instant-mode)
 
 
 
