@@ -8,47 +8,30 @@
 " 設定
 """"""""""""""""
 
-"文字コードを UFT-8 に設定
-set fenc=utf-8
-" バックアップファイルを作らない
-set nobackup
-" スワップファイルを作らない
-set noswapfile
-" 編集中のファイルが変更されたら自動で読み直す
-set autoread
-" バッファが編集中でもその他のファイルを開けるように
-set hidden
-" 入力中のコマンドをステータスに表示する
-set showcmd
+set fenc=utf-8              " 文字コードを UTF-8 に設定
+set nobackup                " バックアップファイルを作らない
+set noswapfile              " スワップファイルを作らない
+set autoread                " 編集中のファイルが変更されたら自動で読み直す
+set hidden                  " バッファが編集中でもその他のファイルを開けるように
+set showcmd                 " 入力中のコマンドをステータスに表示する
 
 
 "" 見た目系
 
-" 行番号を表示
-set number
-" カーソルの縦移動とかを改善する
-set relativenumber
-" 現在の行を強調表示
-set cursorline
-" 現在の行を強調表示（縦）
-set cursorcolumn
-" 行末の 1 文字先までカーソルを移動できるように
-set virtualedit=onemore
-" インデントはスマートインデント
-set smartindent
-" 改行時に前の行のインデントを継続する
-set autoindent
-" ビープ音を可視化
-set visualbell
-" 括弧入力時の対応する括弧を表示
-set showmatch
-" ステータスラインを常に表示
-set laststatus=2
-" コマンドラインの補完
-set wildmode=list:longest
-" 
-set background=dark
-set termguicolors
+set number                  " 行番号を表示
+set relativenumber          " カーソルの縦移動とかを改善する
+set cursorline              " 現在の行を強調表示
+set cursorcolumn            " 現在の行を強調表示（縦）
+set virtualedit=onemore     " 行末の 1 文字先までカーソルを移動できるように
+set smartindent             " インデントはスマートインデント
+set autoindent              " 改行時に前の行のインデントを継続する
+set visualbell              " ビープ音を可視化
+set showmatch               " 括弧入力時の対応する括弧を表示
+set laststatus=2            " ステータスラインを常に表示
+set wildmode=list:longest   " コマンドラインの補完
+set background=dark         " 暗い背景色を設定
+set termguicolors           " True Color（24bit color）用オプション
+
 " ウィンドウ移動
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -83,46 +66,30 @@ nmap <F8> :TagbarToggle<CR>
 
 "" オペレーション系
 
-" 行をまたいで移動
-set whichwrap=b,s,h,l,<,>,[,],~
-" マウスカーソルの反応
-set mouse=a
-" コマンドラインの履歴を 10000 件保存する
-set history=10000
+set whichwrap=b,s,h,l,<,>,[,],~       " 行をまたいで移動
+set mouse=a                           " マウスカーソルの反応
+set history=10000                     " コマンドラインの履歴を 10000 件保存する
 
 
 "" タブ系
 
-" 不可視文字を可視化(タブが「▸-」と表示される)
-set list listchars=tab:\▸\-
-" Tab 文字を半角スペースにする
-set expandtab
-" 行頭以外のタブ文字の表示幅（スペースいくつ分）
-set tabstop=2
-" 行頭でのタブ文字の表示幅
-set shiftwidth=2
-" 行頭の余白内で Tab を打ち込むと、'shiftwidth' の数だけインデントする
-set smarttab
-" tabstop に 2 文字分の空白をプラスし、タブの見た目を 4 文字分に変える
-set softtabstop=2
+set list listchars=tab:\▸\-           " 不可視文字を可視化（タブが「▸-」と表示される）
+set expandtab                         " Tab 文字を半角スペースにする
+set tabstop=2                         " 行頭以外のタブ文字の表示幅（スペースいくつ分）
+set shiftwidth=2                      " 行頭でのタブ文字の表示幅
+set smarttab                          " 行頭の余白内で Tab を打ち込むと、'shiftwidth' の数だけインデントする
+set softtabstop=2                     " tabstop に 2 文字分の空白をプラスし、タブの見た目を 4 文字分に変える
 
 
 "" 検索系
 
-" 検索文字列が小文字の場合は大文字小文字を区別なく検索する
-set ignorecase
-" 検索文字列に大文字が含まれている場合は区別して検索する
-set smartcase
-" 検索文字列入力時に順次対象文字列にヒットさせる
-set incsearch
-" 検索ワードの最初の文字を入力した時点で検索が開始される
-set inccommand=split
-" 検索時に最後まで行ったら最初に戻る
-set wrapscan
-" 検索語をハイライト表示
-set hlsearch
-" ESC 連打でハイライト解除
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
+set ignorecase                        " 検索文字列が小文字の場合は大文字小文字を区別なく検索する
+set smartcase                         " 検索文字列に大文字が含まれている場合は区別して検索する
+set incsearch                         " 検索文字列入力時に順次対象文字列にヒットさせる
+set inccommand=split                  " 検索ワードの最初の文字を入力した時点で検索が開始される
+set wrapscan                          " 検索時に最後まで行ったら最初に戻る
+set hlsearch                          " 検索語をハイライト表示
+nmap <Esc><Esc> :nohlsearch<CR><Esc>  " ESC 連打でハイライト解除
 
 
 
@@ -154,6 +121,22 @@ if dein#load_state('~/.cache/dein')
   call dein#add('tc50cal/vim-terminal')
   call dein#add('preservim/tagbar')
   call dein#add('terryma/vim-multiple-cursors')
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('evanleck/vim-svelte')
+  call dein#add('pangloss/vim-javascript')
+  call dein#add('HerringtonDarkholme/yats.vim')
+  call dein#add('cespare/vim-toml')
+  call dein#add('posva/vim-vue')
+  call dein#add('wavded/vim-stylus')
+  call dein#add('vim-airline/vim-airline-themes')
+  call dein#add('Shougo/defx.nvim')
+  call dein#add('Shougo/denite.nvim')
+  call dein#add('Shougo/deoplete.nvim')
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+  endif
+  call dein#add('kristijanhusak/defx-git')
 
   call dein#end()
   call dein#save_state()
@@ -222,3 +205,8 @@ inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
 
 " Vim PostgreSQL syntax plugin
 let g:sql_type_default = 'pgsql'
+
+
+"" deoplete.nvim（neovim 専用）
+
+let g:deoplete#enable_at_startup = 1

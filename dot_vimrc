@@ -297,24 +297,24 @@ augroup END
 "" lightline.vim
 
 let g:lightline = {
-  \ 'colorscheme': 'cyberpunk-neon',
+  \ 'colorscheme': 'gotham256',
   \ 'active': {
-  \ 'left': [ [ 'mode', 'paste' ],
-  \ [ 'fugitive', 'readonly', 'filename', 'modified' ],
-  \ [ 'ale' ] ]
+  \   'left': [ [ 'mode', 'paste' ],
+  \     [ 'fugitive', 'readonly', 'filename', 'modified' ],
+  \     [ 'ale' ] ]
   \ },
   \ 'component': {
-  \ 'readonly': '%{&filetype=="help"?"":&readonly?"ro":""}',
-  \ 'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-  \ 'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+  \   'readonly': '%{&filetype=="help"?"":&readonly?"ro":""}',
+  \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+  \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
   \ },
   \ 'component_visible_condition': {
-  \ 'readonly': '(&filetype!="help"&& &readonly)',
-  \ 'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-  \ 'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+  \   'readonly': '(&filetype!="help"&& &readonly)',
+  \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+  \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
   \ },
   \ 'component_function': {
-  \ 'ale': 'LinterStatus'
+  \   'ale': 'LinterStatus'
   \ }
   \ }
 
