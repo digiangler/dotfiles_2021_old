@@ -2,6 +2,7 @@
 " Neovim 環境構築
 """"""""""""""""
 
+" Digi-Angler
 " Update:2021/04/29
 
 """"""""""""""""
@@ -108,6 +109,7 @@ if dein#load_state('~/.cache/dein')
 
   call dein#add('tpope/vim-surround')
   call dein#add('preservim/nerdtree')
+  call dein#add('preservim/nerdcommenter')
   call dein#add('tpope/vim-commentary')
   call dein#add('itchyny/lightline.vim')
   call dein#add('vim-airline/vim-airline')
@@ -137,6 +139,7 @@ if dein#load_state('~/.cache/dein')
     call dein#add('roxma/vim-hug-neovim-rpc')
   endif
   call dein#add('kristijanhusak/defx-git')
+  call dein#add('asvetliakov/vim-easymotion')
 
   call dein#end()
   call dein#save_state()

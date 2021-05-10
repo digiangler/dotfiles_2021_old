@@ -11,103 +11,68 @@
 
 " init autocmd
 autocmd!
-" set script encoding
-scriptencoding utf-8
-" stop loading config if it's on tiny or small
-if !1 | finish | endif
-"
-set shell=fish
-"
-set backupskip=/tmp/*,/private/tmp/*
 
-
-"文字コードをUFT-8に設定
-set fenc=utf-8
-" バックアップファイルを作らない
-set nobackup
-" スワップファイルを作らない
-set noswapfile
-" ファイルの上書きの前にバックアップを作る
-set nowritebackup
-" 改行時に前の行のインデントを継続する
-set autoindent
-" 編集中のファイルが変更されたら自動で読み直す
-set autoread
-" クリップボードにコピーする
-set clipboard&
-set clipboard=unnamedplus
-" バッファが編集中でもその他のファイルを開けるように
-set hidden
-" 入力中のコマンドをステータスに表示する
-set showcmd
+scriptencoding utf-8                                    " set script encoding
+if !1 | finish | endif                                  " stop loading config if it's on tiny or small
+set shell=fish                                          "
+set backupskip=/tmp/*,/private/tmp/*                    "
+set fenc=utf-8                                          " 文字コードを UFT-8 に変更
+set nobackup                                            " バックアップファイルを作らない
+set noswapfile                                          " スワップファイルを作らない
+set nowritebackup                                       " ファイルの上書きの前にバックアップを作る
+set autoindent                                          " 改行時に前の行のインデントを継続する
+set autoread                                            " 編集中のファイルが変更されたら自動で読み直す
+set clipboard&                                          " クリップボードにコピーする
+set clipboard=unnamedplus                               "
+set hidden                                              " バッファが編集中でもその他のファイルを開けるように
+set showcmd                                             " 入力中のコマンドをステータスに表示する
 
 
 "" 見た目系
 
-" 行番号を表示
-set number
-" 現在の行を強調表示
-set cursorline
-" 現在の行を強調表示（縦）
-set cursorcolumn
-" 行末の1文字先までカーソルを移動できるように
-set virtualedit=onemore
-" インデントはスマートインデント
-set smartindent
-" ビープ音を可視化
-set visualbell
-" 括弧入力時の対応する括弧を表示
-set showmatch
-"
-set cmdheight=1
-" ステータスラインを常に表示
-set laststatus=2
-"
-set scrolloff=10
-" コマンドラインの補完
-set wildmode=list:longest
+set number                                              " 行番号を表示
+set cursorline                                          " 現在の行を強調表示
+set cursorcolumn                                        " 現在の行を強調表示（縦）
+set virtualedit=onemore                                 " 行末の1文字先までカーソルを移動できるように
+set smartindent                                         " インデントはスマートインデント
+set visualbell                                          " ビープ音を可視化
+set showmatch                                           " 括弧入力時の対応する括弧を表
+set cmdheight=1                                         "
+set laststatus=2                                        " ステータスラインを常に表示
+set scrolloff=10                                        "
+set wildmode=list:longest                               " コマンドラインの補完
+
 " 折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
 nnoremap k gk
 nnoremap <Space>w :w!<CR>
+
 " シンタックスハイライトの有効化
 syntax enable
-"
+
 set encoding=utf-8
 set fileencodings=iso-2022-jp,utf-8,sjis,euc-jp,latin
 set fileformats=unix,dos,mac
-" タイトルを表示
-set title
-"
+set title                                               " タイトルを表示
 set autoindent
-"
 set background=dark
-
 set termguicolors
 
 
 "" オペレーション系
 
-" 行をまたいで移動
-set whichwrap=b,s,h,l,<,>,[,],~
-" マウスカーソルの反応
-set mouse=a
-" コマンドラインの履歴を10000件保存する
-set history=10000
+set whichwrap=b,s,h,l,<,>,[,],~                         " 行をまたいで移動
+set mouse=a                                             " マウスカーソルの反応
+set history=10000                                       " コマンドラインの履歴を 10000 件保存する
 
 
-"" Tab系
+"" Tab 系
 
-" 不可視文字を可視化(タブが「▸-」と表示される)
-set list listchars=tab:\▸\-
-" Tab文字を半角スペースにする
-set expandtab
-" 行頭以外のTab文字の表示幅（スペースいくつ分）
-set tabstop=2
-" 行頭でのTab文字の表示幅
-set shiftwidth=2
-" 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
-set softtabstop=2
+set list listchars=tab:\▸\-                             " 不可視文字を可視化（タブが「▸-」と表示される）
+set expandtab                                           " Tab 文字を半角スペースにする
+set tabstop=2                                           " 行頭以外の Tab 文字の表示幅（スペースいくつ分）
+set shiftwidth=2                                        " 行頭での Tab 文字の表示幅
+set softtabstop=2                                       " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
 " 
 nmap <C-t>n :tabnew<CR>
 nmap <C-t>N :tabNext<CR>
@@ -120,16 +85,12 @@ inoremap <silent> jjq <ESC>:wq!<CR>
 
 "" 検索系
 
-" 検索文字列が小文字の場合は大文字小文字を区別なく検索する
-set ignorecase
-" 検索文字列に大文字が含まれている場合は区別して検索する
-set smartcase
-" 検索文字列入力時に順次対象文字列にヒットさせる
-set incsearch
-" 検索時に最後まで行ったら最初に戻る
-set wrapscan
-" 検索語をハイライト表示
-set hlsearch
+set ignorecase                                          " 検索文字列が小文字の場合は大文字小文字を区別なく検索する
+set smartcase                                           " 検索文字列に大文字が含まれている場合は区別して検索する
+set incsearch                                           " 検索文字列入力時に順次対象文字列にヒットさせる
+set wrapscan                                            " 検索時に最後まで行ったら最初に戻る
+set hlsearch                                            " 検索語をハイライト表示
+
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
@@ -179,6 +140,7 @@ if dein#load_state('/Users/digi-angler/.cache/dein')
   call dein#add('thinca/vim-quickrun')
   call dein#add('tpope/vim-surround')
   call dein#add('preservim/nerdtree')
+  call dein#add('preservim/nerdcommenter')
   call dein#add('tpope/vim-commentary')
   call dein#add('itchyny/lightline.vim')
   call dein#add('vim-airline/vim-airline')
@@ -208,6 +170,7 @@ if dein#load_state('/Users/digi-angler/.cache/dein')
     call dein#add('roxma/vim-hug-neovim-rpc')
   endif
   call dein#add('kristijanhusak/defx-git')
+  call dein#add('asvetliakov/vim-easymotion')
 
   " Required:
   call dein#end()
@@ -364,4 +327,6 @@ set rtp+=/usr/local/opt/fzf
 
 "" deoplete.nvim（neovim 専用）
 
-"let g:deoplete#enable_at_startup = 1
+if has('nvim')
+  let g:deoplete#enable_at_startup = 1
+endif
