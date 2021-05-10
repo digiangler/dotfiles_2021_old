@@ -56,9 +56,10 @@ inoremap <silent> <C-k> k
 " ノーマルモード移行と保存
 inoremap <silent> jj <ESC>:<C-u>w<CR>
 " NERDTree
-nnoremap <C-f> :NERDTreeFocus<CR>
-nnoremap <C-t> :NERDTree<CR>
-nnoremap <C-r> :NERDTreeToggle<CR>
+nnoremap <C-e> :NERDTreeFocus<CR>
+nnoremap <C-q> :NERDTree<CR>
+nnoremap <C-w> :NERDTreeToggle<CR>
+nnoremap <C-r> :NERDTreeFind<CR>
 " Coc
 nnoremap <C-g> :call CocActionAsync('jumpDefinition')<CR>
 " Tagbar
@@ -111,8 +112,10 @@ if dein#load_state('~/.cache/dein')
   call dein#add('preservim/nerdtree')
   call dein#add('preservim/nerdcommenter')
   call dein#add('tpope/vim-commentary')
+  call dein#add('tpope/vim-fugitive')
   call dein#add('itchyny/lightline.vim')
   call dein#add('vim-airline/vim-airline')
+  call dein#add('junegunn/fzf.vim')
   call dein#add('lifepillar/pgsql.vim')
   call dein#add('ap/vim-css-color')
   call dein#add('rafi/awesome-vim-colorschemes')
@@ -126,6 +129,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('tpope/vim-fugitive')
   call dein#add('evanleck/vim-svelte')
   call dein#add('pangloss/vim-javascript')
+  call dein#add('mxw/vim-jsx')
   call dein#add('HerringtonDarkholme/yats.vim')
   call dein#add('cespare/vim-toml')
   call dein#add('posva/vim-vue')
@@ -140,6 +144,10 @@ if dein#load_state('~/.cache/dein')
   endif
   call dein#add('kristijanhusak/defx-git')
   call dein#add('asvetliakov/vim-easymotion')
+  call dein#add('christoomey/vim-tmux-navigator')
+  call dein#add('zchee/deoplete-jedi')
+  call dein#add('dense-analysis/ale')
+  call dein#add('airblade/vim-gitgutter') 
 
   call dein#end()
   call dein#save_state()
