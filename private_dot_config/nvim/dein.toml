@@ -1,0 +1,70 @@
+##############################################
+# dein.toml by Digi-Angler
+##############################################
+# Update : 2021/05/11
+##############################################
+
+# --------------------------------------------
+# dein 本体
+# --------------------------------------------
+
+# Vim / Neovim プラグインマネージャー
+[[plugins]]
+repo = "Shougo/dein.vim"
+
+# Vim 用の優れた非同期実行ライブラリ
+[[plugins]]
+repo = "Shougo/vimproc.vim"
+build = "make"
+
+# ヘルプの日本語化
+[[plugins]]
+repo = "vim-jp/vimdoc-ja"
+
+
+# --------------------------------------------
+#  Setting for lightline
+#  ステータスラインの表示変更
+# --------------------------------------------
+
+[[plugins]]
+repo = "itchyny/lightline.vim"
+hook_add = """
+let g:lightline = {
+\   "colorscheme' : 'gotham256",    
+\}
+"""
+
+
+# --------------------------------------------
+#  setting for cyberpunk-neon
+#  カラーテーマ
+# --------------------------------------------
+
+[[plugins]]
+repo = "Roboron3042/Cyberpunk-Neon"
+hook_add = """
+colorscheme cyberpunk-neon
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#[[plugins]]
+#repo = "neoclide/coc.nvim"
+#merge = 0
+#rev = "release"
+#hook_add = """
+#source ~/.config/nvim/plugins/coc.rc.vim
+#"""

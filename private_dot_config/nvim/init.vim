@@ -15,6 +15,7 @@ set noswapfile              " スワップファイルを作らない
 set autoread                " 編集中のファイルが変更されたら自動で読み直す
 set hidden                  " バッファが編集中でもその他のファイルを開けるように
 set showcmd                 " 入力中のコマンドをステータスに表示する
+set helplang=ja             " ヘルプの日本語化
 
 
 "" 見た目系
@@ -109,13 +110,15 @@ if dein#load_state('~/.cache/dein')
   call dein#load_toml('~/.config/nvim/dein_lazy.toml', {'lazy': 1})
 
   call dein#add('tpope/vim-surround')
+  call dein#add('tpope/vim-repeat')
   call dein#add('preservim/nerdtree')
   call dein#add('preservim/nerdcommenter')
   call dein#add('tpope/vim-commentary')
   call dein#add('tpope/vim-fugitive')
-  call dein#add('itchyny/lightline.vim')
+"  call dein#add('itchyny/lightline.vim')
   call dein#add('vim-airline/vim-airline')
   call dein#add('junegunn/fzf.vim')
+  call dein#add('junegunn/fzf')
   call dein#add('lifepillar/pgsql.vim')
   call dein#add('ap/vim-css-color')
   call dein#add('rafi/awesome-vim-colorschemes')
@@ -130,6 +133,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('evanleck/vim-svelte')
   call dein#add('pangloss/vim-javascript')
   call dein#add('mxw/vim-jsx')
+  call dein#add('fatih/vim-go')
   call dein#add('HerringtonDarkholme/yats.vim')
   call dein#add('cespare/vim-toml')
   call dein#add('posva/vim-vue')
@@ -147,7 +151,13 @@ if dein#load_state('~/.cache/dein')
   call dein#add('christoomey/vim-tmux-navigator')
   call dein#add('zchee/deoplete-jedi')
   call dein#add('dense-analysis/ale')
-  call dein#add('airblade/vim-gitgutter') 
+  call dein#add('airblade/vim-gitgutter')
+  call dein#add('sheerun/vim-polyglot')
+  call dein#add('junegunn/goyo.vim')
+
+  " dein.vim でプラグインの削除
+  " 「call dein#recache_runtimepath()」を入力
+  "call map(dein#check_clean(), "delete(v:val, 'rf')")
 
   call dein#end()
   call dein#save_state()
@@ -167,17 +177,17 @@ syntax enable
 " colorscheme
 "colorscheme dogrun
 "colorscheme gotham256
-colorscheme cyberpunk-neon
+"colorscheme cyberpunk-neon
 
 
 " lightline theme
-let g:lightline = {
-  \ 'colorscheme': 'cyberpunk-neon',
-  \ }
+"let g:lightline = {
+"  \ 'colorscheme': 'solarized dark',
+"  \ }
 
 
 " vim-clap theme
-let g:clap_theme = 'cyberpunk-neon'
+"let g:clap_theme = 'cyberpunk-neon'
 
 
 " NerdTree
@@ -221,3 +231,11 @@ let g:sql_type_default = 'pgsql'
 "" deoplete.nvim（neovim 専用）
 
 let g:deoplete#enable_at_startup = 1
+
+
+" vscode-neovim
+if exists('g:vscode')
+    " VSCode extension
+else
+    " ordinary neovim
+endif
